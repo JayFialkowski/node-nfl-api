@@ -10,6 +10,24 @@ You will need to include node-nfl-api in your project
 npm i node-nfl-api --save
 ```
 
+### Basic example
+
+```
+var nflapi = require('node-nfl-api');
+
+nflapi.fetch().subscribe(
+	x => {
+		console.log("Received: ", x);
+	},
+	e => {
+		console.log("Error: ", e);
+	},
+	() => {
+		console.log('done');
+	}
+);
+```
+
 ## Built With
 
 * [Reactive (RX)](https://www.npmjs.com/package/rx)
