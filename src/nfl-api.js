@@ -42,7 +42,7 @@ function getGame(meta, callback) {
 	}
 	if (!meta || !meta.eid) callback(payload, "NO_META_EID")
 	else {
-		request.get("http://www.nfl.com/liveupdate/game-center/2017100200/2017100200_gtd.json", function (error, response, body) {
+		request.get(`http://www.nfl.com/liveupdate/game-center/${meta.eid}/${meta.eid}_gtd.json`, function (error, response, body) {
 			if (error) callback(payload, error);
 			else {
 				payload.details = body;
