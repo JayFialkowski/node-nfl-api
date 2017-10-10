@@ -3,22 +3,10 @@ var request = require('request');
 var async = require('async');
 var NflAPI = function () {}
 
-NflAPI.prototype.test = function () {
-	console.log('hi');
-}
-
 NflAPI.prototype.getGame = function (id) {
 
 }
-/**
- * fetch
- * @param options {object} - Optional parameter. 
- *  - concurrent - Number of concurrent network requests to allow at a time (default: 1)
- * 
- * TODO: cycle_time
- * TODO: cycle_iterations
- * TODO: whitelist
- */
+
 NflAPI.prototype.fetch = function (options) {
 	if (!options.concurrent || !Number.isSafeInteger(options.concurrent)) options.concurrent = 1;
 	var source = Rx.Observable.create(observer => {
