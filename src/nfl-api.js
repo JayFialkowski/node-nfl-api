@@ -8,6 +8,7 @@ NflAPI.prototype.getGame = function (id) {
 }
 
 NflAPI.prototype.fetch = function (options) {
+	if (!options) options = {};
 	if (!options.concurrent || !Number.isSafeInteger(options.concurrent)) options.concurrent = 1;
 	var source = Rx.Observable.create(observer => {
 		request.get('http://www.nfl.com/liveupdate/scorestrip/ss.json', (error, response, body) => {
