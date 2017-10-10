@@ -1,7 +1,11 @@
 {
-  "name": "nfl-api",
+  "name": "node-nfl-api",
   "version": "1.0.0",
   "description": "An API to get current NFL details",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayfialkowski/node-nfl-api.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
