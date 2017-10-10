@@ -28,6 +28,14 @@ nflapi.fetch().subscribe(
 );
 ```
 
+### Options
+When fetching NFL data, you may pass an *options* object as a parameter. This object is option, as are **all** of its properties. Below is the structure of the options object.
+```
+var options = {
+	concurrent: 1 // Number of simultaneous network requests to allow. Default is 1.
+}
+```
+
 ## Built With
 
 * [Reactive (RX)](https://www.npmjs.com/package/rx)
