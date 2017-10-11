@@ -6,7 +6,7 @@ let options = { // options and all properties are optional
 	filters: {
 		include: ['BUF'],
 		omit: ['CLE'],
-		in_progress_only: true
+		in_progress: true
 	}
 }
 
