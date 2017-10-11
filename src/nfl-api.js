@@ -10,13 +10,15 @@ NflAPI.prototype.getGame = function (id) {
 NflAPI.prototype.fetch = function (options) {
 	if (!options) options = {};
 	if (!options.concurrent || !Number.isSafeInteger(options.concurrent)) options.concurrent = 1;
+	if (!options.filters) options.filters = {};
+
 	var source = Rx.Observable.create(observer => {
 		request.get('http://www.nfl.com/liveupdate/scorestrip/ss.json', (error, response, body) => {
 			if (error) {
 				observer.onError(error);
 				observer.onCompleted();
 			} else {
-				var games = JSON.parse(body)['gms'];
+				var games = filterGames(JSON.parse(body)['gms'], options.filters);
 				var queue = async.queue(getGame, (options.concurrent ? options.concurrent : 1));
 				queue.drain = () => {
 					observer.onCompleted();
@@ -28,8 +30,6 @@ NflAPI.prototype.fetch = function (options) {
 						observer.onNext(result);
 					}
 				})
-
-
 			}
 		});
 	});
@@ -51,6 +51,21 @@ function getGame(meta, callback) {
 			}
 		});
 	}
+}
+
+function filterGames(games, filters) {
+	var g = games;
+	if (filters.in_progress === true) {
+		g = g.filter(function (game) {
+			return Number.isInteger(game.q) || game.q == 'OT';
+		});
+	}
+	if (filters.include) {
+		g = g.filter(function (game) {
+			return filters.include.indexOf(game.h) >= 0 || filters.include.indexOf(game.v) >= 0;
+		})
+	}
+	return g;
 }
 
 module.exports = new NflAPI;
