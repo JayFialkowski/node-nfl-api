@@ -60,6 +60,11 @@ function filterGames(games, filters) {
 			return Number.isInteger(game.q) || game.q == 'OT';
 		});
 	}
+	if (filters.include) {
+		g = g.filter(function (game) {
+			return filters.include.indexOf(game.h) >= 0 || filters.include.indexOf(game.v) >= 0;
+		})
+	}
 	return g;
 }
 

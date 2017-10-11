@@ -34,7 +34,8 @@ When fetching NFL data, you may pass an *options* object as a parameter. This ob
 var options = {
 	concurrent: 1, // Number of simultaneous network requests to allow. Default is 1.
 	filters: {
-		in_progress: true // Only fetch games which are currently in progress. Default is false.
+		in_progress: true, // Only fetch games which are currently in progress. Default is false.
+		include: ['BUF', 'NYJ', 'MIA', 'NE'] // Only fetch games involving a team in the provided array
 	}
 }
 ```
