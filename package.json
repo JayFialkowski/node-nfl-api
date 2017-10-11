@@ -1,6 +1,6 @@
 {
   "name": "node-nfl-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An API to get current NFL details",
   "repository": {
     "type": "git",

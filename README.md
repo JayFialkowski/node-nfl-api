@@ -40,6 +40,10 @@ var options = {
 }
 ```
 
+## Change Log
+### 1.0.3
+* Implement options filtering (in_progress, include)
+
 ## Built With
 
 * [Reactive (RX)](https://www.npmjs.com/package/rx)
