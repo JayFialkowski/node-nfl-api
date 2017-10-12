@@ -17,6 +17,6 @@ api.execute().subscribe(
 		console.log('ERROR', e);
 	},
 	() => {
-		console.log('Subsription terminated.');
+		console.log('Subscription terminated.');
 	}
 );
