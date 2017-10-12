@@ -13,17 +13,26 @@ npm i node-nfl-api --save
 ### Basic example
 
 ```
-var nflapi = require('node-nfl-api');
+var nfl = require(__dirname + '/index.js');
 
-nflapi.fetch().subscribe(
+var options = {
+	interval: 10 * 1000,
+	concurrent: 2,
+	filters: {
+		in_progress: false,
+		include: ['BUF', 'NE', 'MIA', 'NYJ']
+	}
+}
+var api = new nfl(options);
+api.execute().subscribe(
 	x => {
-		console.log("Received: ", x);
+		console.log("New Item", x);
 	},
 	e => {
-		console.log("Error: ", e);
+		console.log('ERROR', e);
 	},
 	() => {
-		console.log('done');
+		console.log('Subsription terminated.');
 	}
 );
 ```
@@ -32,6 +41,7 @@ nflapi.fetch().subscribe(
 When fetching NFL data, you may pass an *options* object as a parameter. This object is optional, as are **all** of its properties. Below is the structure of the options object.
 ```
 var options = {
+	interval: 60 * 1000, // Delay (in millis) before beginning another cycle. Use this for a perpetual subscription. Default is unset (no cycling)
 	concurrent: 1, // Number of simultaneous network requests to allow. Default is 1.
 	filters: {
 		in_progress: true, // Only fetch games which are currently in progress. Default is false.
@@ -41,6 +51,9 @@ var options = {
 ```
 
 ## Change Log
+### 1.1.0
+* Refactored to allow for perpetual subscriptions
+
 ### 1.0.3
 * Implement options filtering (in_progress, include)
 

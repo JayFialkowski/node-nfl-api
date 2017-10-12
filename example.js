@@ -1,22 +1,22 @@
 var nfl = require(__dirname + '/index.js');
 
 var options = {
-	// interval: 10 * 1000,
-	concurrent: 3,
+	interval: 10 * 1000,
+	concurrent: 2,
 	filters: {
 		in_progress: false,
-		include: ['CAR', 'MIA']
+		include: ['BUF', 'NE', 'MIA', 'NYJ']
 	}
 }
 var api = new nfl(options);
 api.execute().subscribe(
 	x => {
-		console.log(x);
+		console.log("New Item", x);
 	},
 	e => {
-		console.log(('error: ', e));
+		console.log('ERROR', e);
 	},
 	() => {
-		console.log('done.');
+		console.log('Subsription terminated.');
 	}
 );
